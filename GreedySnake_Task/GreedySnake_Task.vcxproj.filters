@@ -30,6 +30,9 @@
     <ClCompile Include="point.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="windows.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="snake.h">
@@ -42,6 +45,9 @@
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="point.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="windows.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>
