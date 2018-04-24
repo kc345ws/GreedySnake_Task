@@ -6,9 +6,17 @@
 #include<conio.h>
 #include"food.h"
 #include"windows.h"
+#include<time.h>
+#include<windows.h>
 using namespace std;
 
-class Food;
+Snake::Snake()
+{
+	snake.push_back(Point(10, 8));//初始蛇长度
+	snake.emplace_back(10, 9);
+	snake.emplace_back(10, 10);
+	direction = DOWN;//蛇出生向下运动
+}
 
 void Snake::PrintfSnake()//打印蛇
 {
@@ -20,6 +28,12 @@ void Snake::PrintfSnake()//打印蛇
 	//}
 	for (iter; iter != snake.end(); iter++)
 	{
+		srand((unsigned int)time(0));
+		int colorID = rand() % 10;
+		if (colorID == 0)
+			++colorID;
+		
+		SettxtColor(colorID);
 		iter->PrintfCircular();
 	}
 	
@@ -121,9 +135,9 @@ void Snake::HitMap()
 		/*snake.emplace_back(35, 2);*/
 
 		/*Point *point;*/
-		GetPoint(10, 16);
+		GetPoint(10, 32);
 		cout << "撞到地图边界，游戏结束" << endl;
-		GetPoint(11, 17);
+		GetPoint(11, 33);
 		exit(0);
 
 		
@@ -138,6 +152,7 @@ bool Snake::GetFood(Food * cfood)
 	{
 		snake.emplace_back(Point(cfood->x, cfood->y));
 		PrintfSnake();
+		Beep(5000, 10);
 		return true;
 	}
 	else
@@ -153,9 +168,9 @@ void Snake::HitSnake()
 	{
 		if (snake[i] == snake[num-1])
 		{
-			GetPoint(10, 16);
-			cout << "撞到自身，游戏结束" << endl;
-			GetPoint(11, 17);
+			GetPoint(10, 32);
+			cout << "撞到蛇的身体，游戏结束" << endl;
+			GetPoint(11, 33);
 			exit(0);
 		}
 	}

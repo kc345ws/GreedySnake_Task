@@ -20,9 +20,13 @@ void Food::PrintfFood()
 	{
 		food_y += 2;
 	}
-
+	srand((unsigned int)time(0));
+	int colorID = rand() % 10;
+	if (colorID == 0)
+		++colorID;
 	Food::x = food_x;
 	Food::y = food_y;
 	GetPoint(x, y);
+	SettxtColor(colorID);
 	cout << "бя";
 }

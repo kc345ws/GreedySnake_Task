@@ -1,6 +1,9 @@
 #include"map.h"
 #include"point.h"
 #include<iostream>
+#include<conio.h>
+#include<windows.h>
+#include"windows.h"
 using namespace std;
 
 Map::Map()
@@ -134,6 +137,8 @@ void Map::PrintfMap()
 
 	for (iter; iter != map1.end(); iter++)
 	{
+		SettxtColor(4);
 		iter->Point::PrintfSquare();
+		Sleep(10);
 	}
 }
