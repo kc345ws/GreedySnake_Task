@@ -15,17 +15,27 @@ int main()
 	Snake *csnake = new Snake();
 	Map *cmap = new Map();
 	Food *cfood = new Food();
+	//Food &cfood1 = cfood;
 	csnake->PrintfSnake();
 	cmap->PrintfMap();
 	Sleep(200);
+	cfood->PrintfFood();
 	while (1)
 	{
-		csnake->PrintfSnake();
-		cfood->PrintfFood();
+		/*csnake->GetFood(cfood);*/
 		csnake->ChangeSnakeDirection();
+
+		if(csnake->GetFood(cfood) == true)
+		{
+			cfood->PrintfFood();
+		}
+		/*csnake->PrintfSnake();*/
+		
+		
 		csnake->Moveing() ;
-		Sleep(200);
+		Sleep(100);
 		csnake->HitMap();
+		csnake->HitSnake();
 	}
 	
 	return 0;

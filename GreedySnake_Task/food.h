@@ -10,7 +10,7 @@ class Food
 public:
 	void PrintfFood();
 
-	Food() : x(0), y(0)
+	Food() 
 	{
 
 	}

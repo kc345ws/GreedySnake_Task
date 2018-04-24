@@ -5,6 +5,7 @@
 #include<vector>
 #include<conio.h>
 #include"food.h"
+#include"windows.h"
 using namespace std;
 
 class Food;
@@ -66,6 +67,7 @@ void Snake::Moveing()
 	MoveMethod();//不断调用移动方式使坐标发生变化
 	snake.front().Point::PrintfBlank();
 	snake.pop_front();
+
 	//PrintfSnake();
 }
 
@@ -78,114 +80,38 @@ void Snake::ChangeSnakeDirection()
 
 		switch (ch)
 		{
-			
+
 		case 72://上
-			{
+		{
 			if (Snake::direction != DOWN)
 				Snake::direction = UP;
 			break;
-			}
+		}
 		case 80:
-			{//下
+		{//下
 			if (Snake::direction != UP)
 				Snake::direction = DOWN;
 			break;
-			}
+		}
 		case 75://左
-			{
+		{
 			if (Snake::direction != RIGHT)
 				Snake::direction = LEFT;
 			break;
 
-			}
+		}
 		case 77://右
-			{
+		{
 			if (Snake::direction != LEFT)
 				Snake::direction = RIGHT;
 			break;
-			}
 		}
+		
+		}
+		
 	}
-
-	//char ch;
-
-	//if (kbhit())//kbhit函数返回值为两个，需注意
-
-	//{
-
-	//	ch = getch();
-
-	//	switch (ch)
-
-	//	{
-
-	//	case -32:
-
-	//		ch = getch();
-
-	//		switch (ch)
-
-	//		{
-
-	//		case 72://上键的assic
-
-	//			if (direction != Direction::DOWN)//如果方向与当前运动方向相反，无效
-
-	//				direction = Direction::UP;
-
-	//			break;
-
-	//		case 80://下键的assic
-
-	//			if (direction != Direction::UP)
-
-	//				direction = Direction::DOWN;
-
-	//			break;
-
-	//		case 75://左键的assic
-
-	//			if (direction != Direction::RIGHT)
-
-	//				direction = Direction::LEFT;
-
-	//			break;
-
-	//		case 77://右键的assic
-
-	//			if (direction != Direction::LEFT)
-
-	//				direction = Direction::RIGHT;
-
-	//			break;
-
-	//		default:
-
-	//			break;
-
-	//		}
-
-	//		return true;
-
-
-
-	//	case 27://ESC assic菜单
-
-	//		return false;
-
-
-
-	//	default:
-
-	//		return true;
-
-
-	//	}
-
-	//}
-
-	//return true;
-	//return true;
+	
+	
 }
 
 void Snake::HitMap()
@@ -195,8 +121,10 @@ void Snake::HitMap()
 		/*snake.emplace_back(35, 2);*/
 
 		/*Point *point;*/
-		Point point;
-		point.PrintfGameOver();
+		GetPoint(10, 16);
+		cout << "撞到地图边界，游戏结束" << endl;
+		GetPoint(11, 17);
+		exit(0);
 
 		
 		/*cout <<"撞到地图边界，游戏结束" << endl;
@@ -204,15 +132,38 @@ void Snake::HitMap()
 	}
 }
 
-void Snake::GetFood(const Food & cfood)
+bool Snake::GetFood(Food * cfood)
 {
-	if (snake.back().GetX() == cfood.x&&snake.back().GetY() == cfood.y)
+	if (snake.back().GetX() == cfood->x&&snake.back().GetY() == cfood->y)
 	{
-		snake.emplace_back(cfood.x,cfood.y);
+		snake.emplace_back(Point(cfood->x, cfood->y));
 		PrintfSnake();
+		return true;
 	}
+	else
+		return false;
 }
 
+void Snake::HitSnake()
+{
+	/*unique(snake.begin(), snake.end());*/
+	//deque<Point>::iterator iter = snake.begin();
+	int num = size(snake);
+	for (int i = 0; i < num-1 ; i++)
+	{
+		if (snake[i] == snake[num-1])
+		{
+			GetPoint(10, 16);
+			cout << "撞到自身，游戏结束" << endl;
+			GetPoint(11, 17);
+			exit(0);
+		}
+	}
+	//for (iter; iter != snake.end(); iter++)
+	//{
+	//	if(*iter == snake.back())
+	//}
+}
 
 
 //void Snake::GetFood(const Food& cfood)

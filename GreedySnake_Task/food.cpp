@@ -2,10 +2,14 @@
 #include"food.h"
 #include"point.h"
 #include"windows.h"
+#include<conio.h>
+#include<windows.h>
+#include<time.h>
 using namespace std;
 
 void Food::PrintfFood()
 {
+	srand((unsigned int)time(0));
 	int food_x = rand() % 30;
 	int food_y = rand() % 30;
 	if (food_x < 2)

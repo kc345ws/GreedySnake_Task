@@ -25,9 +25,9 @@ public:
 	void MoveMethod();//蛇移动方式
 	void ChangeSnakeDirection();//改变蛇的方向
 	void Moveing();//蛇移动
-	void HitMap();
-	void GetFood(const Food& cfood);
-
+	void HitMap();//碰撞到地图边界
+	bool GetFood(Food* cfood);
+	void HitSnake();//碰撞到蛇自身
 	/*void PrintfBlank();*/
 
 private:

@@ -15,10 +15,10 @@ public:
 	//{
 
 	//}
-	//bool operator== (const Point& point) //运算符重载
-	//{
-	//	return (point.x == this->x) && (point.y == this->y);
-	//}
+	int operator== (const Point& point) //运算符重载
+	{
+		return (point.x == this->x) && (point.y == this->y);
+	}
 	Point()
 	{
 		
@@ -33,7 +33,7 @@ public:
 	void PrintfSquare();//打印正方形
 	void PrintfCircular();//打印圆
 	void PrintfBlank();//打印空白
-	void PrintfGameOver();
+	//void PrintfGameOver();//打印游戏结束
 	
 
 	//int GetX();//获得光标X坐标
@@ -58,10 +58,12 @@ public:
 
 
 
-	
+	friend class Snake;
 
 private:
 
 	int x, y;
+
+	
 };
 #endif
